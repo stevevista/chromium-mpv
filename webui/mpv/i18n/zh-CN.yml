@@ -1,0 +1,141 @@
+player: 播放器
+common:
+  ok: 确定
+  close: 关闭
+  cancel: 取消
+  openFile: 打开文件
+  play: 播放
+  suspend: 暂停
+  setting: 设置
+  fileInfo: 信息
+  authorization: 验证
+  license: 版权
+video:
+  info: 信息
+  stop: 停止播放
+  video: 视频
+  ext_clock: 外部时钟
+  Speed: 速度
+  Normal: 正常
+  load_fail: 视频加载失败
+  switching_to: 正在切换至
+  switched_to: 已经切换至
+  quality: 画质
+  FF: 快进
+  REW: 快退
+  Setting: 设置
+  Full_screen: 全屏
+  s: 秒
+  Live: 直播
+  detection: AI 侦测
+  detection_on: AI总开关-开
+  detection_off: AI总开关-关
+  speed: 播放速度
+  autoHideControl: 自动隐藏控制栏
+  snapshot: 截图
+  snapshot_working: 停止截图
+  openUrl: 打开流媒体
+  openDir: 打开播放目录
+  playControl: 播放控制
+  settings:
+    snapshot_format: 截图保存格式
+    snapshot_dir: 截图默认保存目录
+    auto_next: 自动播放下一个
+    streaming_transport: 流媒体连接方式
+    disable_audio: 禁用音频流
+    shot_with_detection: 包含AI信息
+  play_list:
+    remove: 移除
+    removeAll: 清空
+    add: 添加
+  goto_timepos: 转到时间戳
+  goto_frame: 转到帧
+  goto: 转到
+  zoom_reset: 取消电子放大
+  zoom: 电子放大
+  rewind: 倒放
+  source_path: 文件
+  format: 格式
+  source_size: 大小
+  resolution: 分辨率
+  fps: 帧率
+  drops: 丢帧
+  duration: 时长
+  repeat: 列表循环
+  repeat-once: 单集循环
+  repeat-off: 无循环
+  playlist-music: 播放列表下一个
+  snapshot_mode: 连拍模式
+  shot_by_time: 时间间隔(ms)
+  shot_by_frame: 帧号间隔
+  max_count: 最大张数
+  schedule_shot: 连拍
+  shot_each: 每帧截图
+  hwaccel: 硬件加速
+  hwaccel_warn: 部分硬件加速可能不支持
+  frame_id: 帧号
+  hybird: AI 抓拍
+status:
+  all: 全部
+  online: 在线
+  connected: 已连接
+  bookmark: 收藏
+ai:
+  switch: AI开关
+  pedestrian: 人体检测
+  face: 人脸检测
+  face_rec: 人脸抓拍
+  pedestrian_rec: 人体抓拍
+  vehicle_rec: 车辆抓拍
+  landmark: Landmark
+  vehicle: 车辆检测
+  plate: 车牌
+audio: 音频
+volume: 音量
+prev_frame: 上一帧
+next_frame: 下一帧
+nodelay: 时延优先
+settings: 设置
+history: 历史
+play-control: 播放控制
+transport: 连接方式
+video-sync: 视频
+sync-type: 同步方式
+adopt_output: 自适应分辨率输出
+restart-notice: '* 下次播放或打开时生效'
+debug_report: 输出调试log
+debug_report_warn: 仅用于调试，可能导致播放不稳定或崩溃
+auto_reconnect: 自动重连
+appearance: 外观
+language: 语言
+theme: 主题
+auto: 自动
+light: 浅色
+dark: 暗黑
+search: 搜索
+open: 打开
+log_loc: Log 位置
+player_backend: 引擎
+show_bookmark_bar: 显示书签栏
+trace_on: 本地识别
+trace_off: 本地识别
+ai_cfg_reconnect: AI 配置变更，重新连接
+equalizer: 色彩调节
+talk: 对讲
+record: 录像
+RemuxCut: 剪辑
+ui_mode: 应用模式
+browser: 浏览器
+on_startup: 开始页面
+new_tab: 欢迎页
+specific_pages: 指定页面
+connected: 已连接
+downloads: 下载
+downloads_loc: 下载位置
+change: 修改
+ask_save: 下载前询问保存地址
+about: 关于
+age: 岁
+female: 女
+male: 男
+autoupdate: 自动升级到新版本

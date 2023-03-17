@@ -1,0 +1,10 @@
+import("//build/buildflag_header.gni")
+import("//bella/buildflags/buildflags.gni")
+
+buildflag_header("buildflags") {
+  header = "buildflags.h"
+
+  flags = [
+    "ENABLE_PLAYER_PLUGIN=$enable_player_plugin",
+  ]
+}

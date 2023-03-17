@@ -1,0 +1,145 @@
+import("//chrome/common/features.gni")
+import("//bella/buildflags/buildflags.gni")
+import("//tools/grit/grit_rule.gni")
+import("//build/config/locales.gni")
+import("//ui/webui/resources/tools/generate_grd.gni")
+import("//bella/build/webpack.gni")
+
+#
+# src\content\browser\BUILD.gn
+#
+# deps += [ "//bella", ]
+#
+#
+static_library("bella") {
+  sources = [ 
+    "cpp/bella.cc",
+    "cpp/bella.h",
+    "cpp/constants.cc",
+    "cpp/constants.h",
+    "cpp/player_ui.cc",
+    "cpp/player_ui.h",
+    "cpp/handlers/open-file-dialog-handler.cc",
+    "cpp/handlers/open-file-dialog-handler.h",
+    "cpp/handlers/open-auth-dialog-handler.cc",
+    "cpp/handlers/open-auth-dialog-handler.h",
+    "cpp/handlers/prefs-handler.cc",
+    "cpp/handlers/prefs-handler.h",
+    "cpp/settings_ui.cc",
+    "cpp/settings_ui.h",
+  ]
+
+  deps = [
+    "//bella/buildflags",
+    "//content/public/common",
+    ":resources",
+    ":player_strings",
+  ]
+}
+
+grit("player_strings") {
+  source = "strings/strings.grd"
+  defines = chrome_grit_defines
+
+  outputs = [ "grit/strings.h" ]
+  foreach(locale, all_chrome_locales) {
+    outputs += [ "bella_strings_$locale.pak" ]
+  }
+}
+
+# -----------------------------------------------------
+#    resources
+# -----------------------------------------------------
+
+generated_grd = "$target_gen_dir/resources.grd"
+webpack_bundle_grdp = "$target_gen_dir/webpack_bundle_resources.grdp"
+webpack_gen_dir = "$target_gen_dir/webpack"
+
+generate_grd("build_grd") {
+  out_grd = generated_grd
+  grd_prefix = "bella"
+
+  grdp_files = [ 
+    "$target_gen_dir/webui/mpv/local_resources.grdp",
+    webpack_bundle_grdp,
+  ]
+
+  deps = [ 
+    "webui/mpv:build_grd_local",
+    ":build_grd_webpack_bundle",
+  ]
+}
+
+grit("resources") {
+  defines = chrome_grit_defines
+
+  # These arguments are needed since the grd is generated at build time.
+  enable_input_discovery_for_gn_analyze = false
+  source = generated_grd
+  deps = [ ":build_grd" ]
+
+  outputs = [
+    "grit/bella_resources.h",
+    "grit/bella_resources_map.cc",
+    "grit/bella_resources_map.h",
+    "bella_resources.pak",
+  ]
+
+  output_dir = "$target_gen_dir"
+}
+
+generate_grd("build_grd_webpack_bundle") {
+  grd_prefix = "bella"
+  out_grd = webpack_bundle_grdp
+  input_files_base_dir = rebase_path(webpack_gen_dir, root_build_dir)
+  input_files = [
+    "mpv.bundle.js",
+  ]
+
+  deps = [ ":webpack_bundle", ]
+}
+
+webpack_build("webpack_bundle") {
+  deps = [ ]
+
+  inputs = [
+    "build/webpack.config.webui.js",
+    "webui/mpv/elements/icon.js",
+    "webui/mpv/elements/btn.js",
+    "webui/mpv/elements/stacked-btn.js",
+    "webui/mpv/elements/loading.js",
+    "webui/mpv/elements/play-bar.js",
+    "webui/mpv/elements/volume-ctrl.js",
+    "webui/mpv/elements/controller-bar.js",
+    "webui/mpv/elements/media-info.js",
+    "webui/mpv/elements/notice.js",
+    "webui/mpv/elements/video.js",
+    "webui/mpv/elements/mpv-client.js",
+    "webui/mpv/index.js",
+  ]
+
+  out_dir = webpack_gen_dir
+
+  outputs = [
+    "$webpack_gen_dir/mpv.bundle.js",
+  ]
+}
+
+# -----------------------------------------------------
+#    update chrome\chrome_paks.gni
+# -----------------------------------------------------
+#  
+#    sources += ...
+#      "$root_gen_dir/bella/bella_resources.pak",
+#    ...
+#    deps += ...
+#      "//bella:resources",
+
+# -----------------------------------------------------
+#    update chrome\chrome_repack_locales.gni
+# -----------------------------------------------------
+#
+#   sources += ...
+#     "${root_gen_dir}/bella/bella_strings_",
+#    deps += ...
+#      "//bella:player_strings",

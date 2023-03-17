@@ -1,0 +1,10 @@
+import("//ui/webui/resources/tools/generate_grd.gni")
+
+generate_grd("build_grd_local") {
+  grd_prefix = "bella_player"
+  out_grd = "$target_gen_dir/local_resources.grdp"
+  input_files_base_dir = rebase_path(".", "//")
+  input_files = [
+    "index.html",
+  ]
+}

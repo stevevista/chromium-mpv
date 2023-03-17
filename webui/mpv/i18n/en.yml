@@ -1,0 +1,138 @@
+player: Player
+common:
+  ok: OK
+  close: Close
+  cancel: Cancel
+  openFile: Open File
+  play: Play
+  suspend: Suspend
+  setting: Setting
+  fileInfo: Infomation
+  authorization: Authorization
+video:
+  info: Infomation
+  stop: Stop
+  video: Video
+  ext_clock: Extern Clock
+  Speed: Speed
+  Normal: Normal
+  load_fail: Load fail
+  switching_to: Switching_to
+  switched_to: Switched to
+  quality: Quality
+  FF: FF
+  REW: REW
+  Setting: Setting
+  Full_screen: Full screen
+  s: s
+  Live: Live
+  detection: AI Detection
+  detection_on: AI Detection on
+  detection_off: AI Detection off
+  speed: Speed
+  autoHideControl: Auto hide controller
+  snapshot: Screenshot
+  snapshot_working: Stop screenshot
+  openUrl: Open URL
+  openDir: Open Directory
+  playControl: Play Control
+  settings:
+    snapshot_format: Snapshot saving format
+    snapshot_dir: Snapshot Saving To
+    auto_next: Auto play next
+    streaming_transport: Streaming transport
+    disable_audio: Disable Audio
+    shot_with_detection: Include Detection
+  play_list:
+    remove: Remove
+    removeAll: Remove All
+    add: Add
+  goto_timepos: Goto PTS
+  goto_frame: Goto Frame
+  goto: Goto
+  zoom_reset: Cancel Zoomin
+  zoom: ZoomIn
+  rewind: Rewind
+  source_path: URL
+  format: Format
+  source_size: Size
+  resolution: Resolution
+  fps: fps
+  drops: Drop Frames
+  duration: Duration
+  repeat: Repeat List
+  repeat-once: Repeat Single
+  repeat-off: Repeat Off
+  playlist-music: Auto play next
+  snapshot_mode: Snapshot Mode
+  shot_by_time: By Interval(ms)
+  shot_by_frame: By Frame
+  max_count: Max count
+  schedule_shot: Multiple Snapshots
+  shot_each: Screenshot each frame
+  hwaccel: Hardware Acceleration
+  hwaccel_warn: Hardware Acceleration may not fully function on your PC
+  frame_id: Frame ID
+  hybird: Hybird
+status:
+  all: All
+  online: online
+  connected: Connected
+  bookmark: Bookmark
+ai:
+  switch: AI Switch
+  pedestrian: Pedestrian
+  face: Face
+  face_rec: Face Recognize
+  pedestrian_rec: Pedestrian Recognize
+  vehicle_rec: Vehicle Recognize
+  landmark: Landmark
+  vehicle: Vehicle
+  plate: Plate
+audio: Audio
+volume: Volume
+prev_frame: Previous Frame
+next_frame: Next Frame
+nodelay: Low latency
+settings: Settings
+history: History
+play-control: Play Control
+transport: Transport
+video-sync: Video
+sync-type: Sync Type
+adopt_output: Adopt Display Output
+restart-notice: '* Affect next playing or opening'
+debug_report: Output Debug log
+debug_report_warn: For debug only, this option may crash app
+auto_reconnect: Auto reconnect when lost connection
+appearance: Appearance
+language: Language
+theme: Theme
+auto: Auto
+light: Light
+dark: Dark
+search: Search
+open: Open
+log_loc: Logs location
+player_backend: Backend
+show_bookmark_bar: Show bookmarks bar
+trace_on: Local detection on
+trace_off: Local detection off
+ai_cfg_reconnect: AI configuration changed, reconnecting
+equalizer: Equalizer
+talk: Talk
+record: Record
+ui_mode: App Mode
+browser: Browser
+on_startup: On Startup
+new_tab: New Tab
+specific_pages: Specific Ppages
+downloads: Downloads
+downloads_loc: Location
+change: Change
+ask_save: Ask where to save each file before downloading
+about: About
+age: Age
+female: Female
+male: Male
+autoupdate: Auto update

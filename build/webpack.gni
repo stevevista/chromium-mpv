@@ -1,0 +1,34 @@
+import("./npm.gni")
+
+template("webpack_build") {
+  assert(defined(invoker.out_dir), "Need output path to run")
+  assert(defined(invoker.inputs), "Need webpack inputs to run")
+
+  npm_action(target_name) {
+    forward_variables_from(invoker,
+                           [
+                             "deps",
+                             "public_deps",
+                           ])
+    script = "build"
+
+    inputs = invoker.inputs
+
+    mode = "development"
+    if (is_official_build) {
+      mode = "production"
+    }
+
+    args = [
+      "--output-path=" + rebase_path(invoker.out_dir),
+      "--env",
+      "buildflags=" +
+          rebase_path("$root_gen_dir/bella/buildflags/buildflags.h"),
+      "--env",
+      "mode=" + mode,
+    ]
+    deps += [ "//bella/buildflags" ]
+
+    outputs = invoker.outputs
+  }
+}

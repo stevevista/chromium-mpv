@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html dir="$i18n{textdirection}">
+<head>
+  <meta charset="utf-8">
+  <title>mpv</title>
+  <script src="strings.m.js" type="module"></script>
+  <script src="mpv.bundle.js" type="module"></script>
+
+  <script type="module">
+    import {sendWithPromise} from 'chrome://resources/js/cr.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.querySelector('x-video')
+
+      // open-file
+      // start-file
+      // end-file
+      // file-loaded
+      // prop-change
+      // 
+
+      video.addEventListener('open-file', async (e) => {
+        e.preventDefault();
+        const files = await sendWithPromise('openFileDialog', {})
+        if (files.length > 0) {
+          video.setAttribute('src', files[0])
+        }
+      })
+
+      video.addEventListener('prop-change', (e) => {
+        // console.log(e.detail.name, e.detail.data)
+      })
+    })
+  </script>
+  <style>
+    body {
+      margin: 0;
+    }
+    x-video {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <x-video control></x-video>
+  </div>
+</body>
+</html>

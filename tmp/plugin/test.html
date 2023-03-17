@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+</head>
+<body onload="onload()">
+  <x-live
+    id="player"
+    style="display: block; width: 100%; height: 90%"
+  >
+  </x-live>
+  <div>
+    Press F12 to view console output
+    <input id="ip" value="10.21.81.35"/>
+    <button onclick="play()">play</button>
+    <button onclick="play_noauth()">play with no auth</button>
+    <button onclick="playws()">play websocket</button>
+    <button onclick="stop()">stop</button>
+    <button onclick="screenshot()">screenshot to D:\test.jpg</button>
+    <button onclick="record()">record to D:\test.mp4</button>
+    <button onclick="stoprecord()">stop record</button>
+    <button onclick="zoom()">zoom</button>
+    <button onclick="unzoom()">cancel zoom</button>
+    <button onclick="smart()">turn on/off smart detection</button>
+    <button onclick="talk()">turn on talk</button>
+  </div>
+  <!--<x-live id="player2" style="display: block; width: 100%; height: 25%"></x-live>-->
+  <!--<x-live id="player3" style="display: block; width: 100%; height: 25%"></x-live>-->
+  <!--<x-live id="player4" style="display: block; width: 100%; height: 25%"></x-live>-->
+  <script type="text/javascript" src="./player-components.bundle.js"></script>
+
+  <script type="text/javascript">
+    let el
+    var propsset = {}
+    function onload() {
+      el = document.getElementById('player')
+
+      el.addEventListener('start-file', (e) => {
+        console.log('Event: start-file ', e)
+      })
+
+      el.addEventListener('end-file', (e) => {
+        console.log('Event: end-file ', e)
+      })
+
+      el.addEventListener('error-msg', (msg) => {
+        console.log('Event: error-msg ', msg)
+      })
+
+      el.addEventListener('file-loaded', (e) => {
+        console.log('Event: file-loaded ', e)
+      })
+
+      el.addEventListener('screenshot', (e) => {
+        console.log('Event: screenshot ', e)
+      })
+
+      el.addEventListener('detection', (e) => {
+          if (typeof propsset['eventdetection'] === 'number' && propsset['eventdetection'] > 3) {
+            return
+          }
+          console.log('Event: detection ', e)
+          propsset['eventdetection'] = (propsset['eventdetection'] || 0) + 1
+      })
+
+      el.addEventListener('auth-require', (url) => {
+        console.log('auth required ', url)
+      })
+
+      el.addEventListener('prop-change', (name, value) => {
+        if (typeof propsset[name] === 'number' && propsset[name] > 3) {
+          return
+        }
+        console.log(`Property ${name} = ${value}`)
+        propsset[name] = (propsset[name] || 0) + 1
+      })
+
+        //const player2 = document.getElementById('player2')
+        //const player3 = document.getElementById('player3')
+        //const player4 = document.getElementById('player4')
+        
+        /*
+        player2.load('rtsp://10.21.81.143/live&t=unicast&p=rtsp&token=PROFILE_001', 'replace', {
+            'username': 'admin',
+            'password': 'admin',
+        })
+
+        player3.load('rtsp://10.21.81.143/live&t=unicast&p=rtsp&token=PROFILE_002', 'replace', {
+            'username': 'admin',
+            'password': 'admin',
+        })
+
+        player4.load('rtsp://10.21.81.143/live&t=unicast&p=rtsp&token=PROFILE_000', 'replace', {
+            'username': 'admin',
+            'password': 'admin',
+        })
+        */
+    }
+
+    function play() {
+      propsset = {}
+      const ip = document.getElementById('ip').value
+      el.load(`rtsp://${ip}/live&t=unicast&p=rtsp&token=PROFILE_000`, 'replace', {
+            'username': 'admin',
+            'password': 'admin',
+      })
+    }
+
+    function play_noauth() {
+      const ip = document.getElementById('ip').value
+      el.load(`rtsp://${ip}/live&t=unicast&p=rtsp&token=PROFILE_000`, 'replace', {
+      })
+    }
+
+    function playws() {
+      propsset = {}
+      const ip = document.getElementById('ip').value
+      el.load(`ws://${ip}/live`, 'replace', {
+      })
+    }
+
+    function stop() {
+      el.stop()
+    }
+
+    function screenshot() {
+      el.screenshot({ name: 'D:\\test.jpg' })
+    }
+
+    function record() {
+      el.record({ name: 'D:\\test.mp4' })
+    }
+
+    function stoprecord() {
+      el.record({ cancel: true })
+    }
+
+    function zoom() {
+      el.crop([100, 100, 300, 300]);
+    }
+
+    function unzoom() {
+      el.crop();
+    }
+
+    function smart() {
+      e.setAttribute('online-detection', true)
+    }
+
+    function talk() {
+      el.talk({})
+    }
+  </script>
+</body>
+</html>

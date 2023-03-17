@@ -1,0 +1,9 @@
+proprietary_codecs = true 
+enable_nacl = true 
+enable_platform_hevc = true
+enable_expensive_dchecks = false
+ffmpeg_branding = "Chrome"
+media_use_ffmpeg = true 
+enable_widevine = true 
+bundle_widevine_cdm = true 
+enable_media_foundation_widevine_cdm = true
