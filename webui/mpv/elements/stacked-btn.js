@@ -1,6 +1,8 @@
 import { LitElement, css, html } from 'lit'
 
 export default class XStackedBtn extends LitElement {
+  static shadowRootOptions = { mode: 'closed' }
+
   static styles = css`
   :host {
     display: flex;
@@ -16,12 +18,12 @@ export default class XStackedBtn extends LitElement {
     display: none;
     flex-direction: column-reverse;
     z-index: 100;
-    padding-bottom: 20px;
+    padding-bottom: 8px;
   }
 
   .sub-group ::slotted(*) {
-    padding-top: 6px !important;
-    padding-bottom: 6px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
   }
 
   :host(:hover) .sub-group {

@@ -4,11 +4,11 @@
   "repository": "",
   "description": "",
   "devDependencies": {
-    "@lit/localize": "^0.11.4",
-    "@lit/localize-tools": "^0.6.7",
     "@mdi/svg": "^7.1.96",
     "css-loader": "^6.7.3",
     "dompurify": "^3.0.1",
+    "electron": "21.3.3",
+    "i18n-js": "^4.2.3",
     "lit": "^2.6.1",
     "mini-svg-data-uri": "^1.4.4",
     "pre-flight": "^1.1.1",
@@ -23,7 +23,8 @@
   "private": true,
   "scripts": {
     "pre-flight": "pre-flight",
-    "build": "webpack --config build/webpack.config.webui.js"
+    "build": "webpack --config build/webpack.config.webui.js",
+    "start": "npm run build && electron ./mpv.js"
   },
   "license": "MIT",
   "author": "R.J.",

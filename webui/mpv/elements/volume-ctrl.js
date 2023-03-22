@@ -1,9 +1,6 @@
 import { LitElement, css, html } from 'lit'
 import { styleMap } from 'lit/directives/style-map.js'
-import { classMap } from 'lit/directives/class-map.js'
 import './btn'
-import './play-bar'
-import './volume-ctrl'
 import { getBoundingClientRectViewLeft } from './utils'
 
 const vWidth = 35;
@@ -12,6 +9,10 @@ export default class XVolumeCtrl extends LitElement {
   static styles = css`
   :host {
     display: flex;
+  }
+
+  :host([hidden]) {
+    display: none !important;
   }
 
   x-btn {
@@ -29,7 +30,7 @@ export default class XVolumeCtrl extends LitElement {
   .volume-bar-wrap .volume-bar {
     position: relative;
     width: 0px;
-    height: 5px;
+    height: 3px;
     background: #aaa;
     transition: all 0.3s ease-in-out;
   }
@@ -50,8 +51,8 @@ export default class XVolumeCtrl extends LitElement {
     right: 5px;
     margin-top: -4px;
     margin-right: -10px;
-    height: 13px;
-    width: 13px;
+    height: 11px;
+    width: 11px;
     border-radius: 50%;
     cursor: pointer;
     transition: all .3s ease-in-out;
@@ -139,7 +140,7 @@ export default class XVolumeCtrl extends LitElement {
     if (!isNaN(percentage)) {
       percentage = Math.max(percentage, 0);
       percentage = Math.min(percentage, 1);
-      //notice(`${t('volume')} ${(percentage * 100).toFixed(0)}%`)
+      // notice(`${t('volume')} ${(percentage * 100).toFixed(0)}%`)
       const detail = parseInt(percentage * 100)
       this.dispatchEvent(new CustomEvent('volume-change', { detail, bubbles: true, composed: true, }))
     }

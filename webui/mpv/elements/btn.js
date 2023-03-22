@@ -5,6 +5,7 @@ export default class XBtn extends LitElement {
   static properties = {
     icon: { type: String },
     size: { type: Number },
+    spin: { type: Boolean },
   }
 
   static styles = css`
@@ -39,9 +40,9 @@ export default class XBtn extends LitElement {
       border-radius: var(--radius);
       cursor: pointer;
       transition: 
-                color 160ms,
-                background-color 160ms,
-                border 160ms;
+      color 160ms,
+      background-color 160ms,
+      border 160ms;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
@@ -156,12 +157,23 @@ export default class XBtn extends LitElement {
     
     :host([color^="black"])  { --color: var(--theme-text-accent, #222); --textColor: var(--theme-bgd, #fff); }
     :host([color^="white"])  { --color: var(--theme-bgd-accent2, #ddd); --textColor: var(--theme-text, #111); }
+    :host([color^="teal"])   { --color: var(--teal); }
+    :host([color^="gray"])   { --color: var(--gray); }
+    :host([color^="blue"])   { --color: var(--blue); }
+    :host([color^="red"])    { --color: var(--red); }
+    :host([color^="green"])  { --color: var(--green); }
+    :host([color^="yellow"]) { --color: var(--yellow); }
+    :host([color^="purple"]) { --color: var(--purple); }
+    :host([color^="brown"])  { --color: var(--brown); }
+    :host([color^="pink"])   { --color: var(--pink); }
+    :host([color^="orange"]) { --color: var(--orange); }
+    :host([color^="deep-orange"]) { --color: var(--deep-orange); }
   `
 
   static shadowRootOptions = { mode: 'closed' }
 
   render () {
-    const iconElem = this.icon ? html`<x-icon name="${this.icon}" size="${this.size}"></x-icon>` : ''
+    const iconElem = this.icon ? html`<x-icon name="${this.icon}" size="${this.size}" ?spin=${this.spin}></x-icon>` : ''
     return html`
       <div class="hover" part="hover"></div>
       <main part="main">

@@ -1,0 +1,58 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <style>
+body {
+overflow: hidden;
+margin: 0;
+}
+
+</style>
+<script src="dist/mpv.bundle.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('x-video')
+    const input = document.querySelector('input')
+
+    video.addEventListener('open-file', async (e) => {
+      e.preventDefault();
+      input.click()
+    })
+
+    video.addEventListener('prop-change', (e) => {
+      console.log(e.detail.name, e.detail.value)
+    })
+
+    input.addEventListener('change', (e) => {
+      const files = []
+      for (const f of input.files) {
+        files.push(f.path)
+      }
+      // reset value so next change will trigger
+      input.value = ''
+      if (files.length) {
+        video.load(files)
+      }
+    })
+  })
+</script>
+
+<title>mpv player</title></head>
+
+<body>
+  <x-video 
+    control 
+    enable-crop 
+    enable-key 
+    ai-switch="pedestrian,vehicle,face_detail,face,pedestrian_detail,car_detail"
+    screenshot-format="jpeg"
+    video-sync="audio"
+    locale="zh-cn" 
+    screenshot-directory="D:\"
+    hwaccel="auto">
+  </x-video>
+  
+  <input type="file" ref="openFileEl" style="opacity: 0; position: absolute; top: -100px;" accept="video/*,.ps,.mkv" multiple>
+
+</body>
+</html>

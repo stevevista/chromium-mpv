@@ -1,6 +1,7 @@
 import { LitElement, css, html } from 'lit'
 import i18n from '../i18n'
 import { filesize } from './utils'
+import { updateWhenLocaleChanges } from './localized'
 
 export default class XMediaInfo extends LitElement {
   static styles = css`
@@ -61,6 +62,7 @@ export default class XMediaInfo extends LitElement {
 
   constructor () {
     super()
+    updateWhenLocaleChanges(this)
 
     this.path = ''
     this.format = ''
@@ -84,48 +86,48 @@ export default class XMediaInfo extends LitElement {
     return html`
     <div class="close" @click=${this.close}>[x]</div>
     <div class="item">
-      <span class="title">${ i18n.t('video.source_path') }</span>
-      <span class="data">${ shortUrl }</span>
+      <span class="title">${i18n.t('video.source_path')}</span>
+      <span class="data">${shortUrl}</span>
     </div>
     <div class="item">
-      <span class="title">${ i18n.t('video.format') }</span>
-      <span class="data">${ this.format } ${ this.transport ? `[${this.transport}]` : '' }</span>
+      <span class="title">${i18n.t('video.format')}</span>
+      <span class="data">${this.format} ${this.transport ? `[${this.transport}]` : ''}</span>
     </div>
     <div class="item">
-      <span class="title">${ i18n.t('video.source_size') }</span>
-      <span class="data">${ sizeDisplay }</span>
+      <span class="title">${i18n.t('video.source_size')}</span>
+      <span class="data">${sizeDisplay}</span>
     </div>
     <div class="item" v-show="width && height">
-      <span class="title">${ i18n.t('video.resolution') }</span>
-      <span class="data">${ this.width } x ${ this.height }</span>
+      <span class="title">${i18n.t('video.resolution')}</span>
+      <span class="data">${this.width} x ${this.height}</span>
     </div>
     <div class="item" v-show="fps">
-      <span class="title">${ i18n.t('video.fps') }</span>
-      <span class="data">${ this.fps.toFixed(2) }</span>
+      <span class="title">${i18n.t('video.fps')}</span>
+      <span class="data">${this.fps.toFixed(2)}</span>
     </div>
     <div class="item" v-show="drops">
-      <span class="title">${ i18n.t('video.drops') }</span>
-      <span class="data">${ this.drops.toFixed(2) }</span>
+      <span class="title">${i18n.t('video.drops')}</span>
+      <span class="data">${this.drops.toFixed(2)}</span>
     </div>
     <div class="item" v-show="duration > 0">
-      <span class="title">${ i18n.t('video.duration') }</span>
-      <span class="data">${ formatDuration(this.duration) }</span>
+      <span class="title">${i18n.t('video.duration')}</span>
+      <span class="data">${formatDuration(this.duration)}</span>
     </div>
     <div class="item">
-      <span class="title">${ i18n.t('video.video') }</span>
-      <span class="data">${ this.videoc }</span>
+      <span class="title">${i18n.t('video.video')}</span>
+      <span class="data">${this.videoc}</span>
     </div>
     <div class="item">
-      <span class="title">${ i18n.t('audio') }</span>
-      <span class="data">${ this.audioc }</span>
+      <span class="title">${i18n.t('audio')}</span>
+      <span class="data">${this.audioc}</span>
     </div>
     <div class="item" v-show="sync">
-      <span class="title">${ i18n.t('sync-type') }</span>
-      <span class="data">${ this.sync }</span>
+      <span class="title">${i18n.t('sync-type')}</span>
+      <span class="data">${this.sync}</span>
     </div>
     <div class="item" v-show="hwdec">
-      <span class="title">${ i18n.t('video.hwaccel') }</span>
-      <span class="data">${ this.hwdec }</span>
+      <span class="title">${i18n.t('video.hwaccel')}</span>
+      <span class="data">${this.hwdec}</span>
     </div>
     `
   }
@@ -147,7 +149,7 @@ function computeShortPath (path) {
     }
     return path.slice(0, 38) + ' ...';
   }
-      // show only filename
+  // show only filename
   const group = path.split('\\');
   return group.pop();
 }
@@ -167,4 +169,3 @@ function formatDuration (secs) {
   mins %= 60;
   return align(hours) + ':' + align(mins) + ':' + align(secs)
 }
-

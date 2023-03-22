@@ -79,4 +79,5 @@ add_custom_target(CopyDepends ALL
     COMMAND ${CMAKE_COMMAND} -E 
       copy_if_different
           "${LIBMPV_DLL}"
-          "${CMAKE_BINARY_DIR}/$<$<CONFIG:Debug>:Debug>$<$<CONFIG:Release>:Release>")
+          "${CMAKE_BINARY_DIR}/$<$<CONFIG:Debug>:Debug>$<$<CONFIG:Release>:Release>"
+    DEPENDS ${PEPPER_PLAYER})

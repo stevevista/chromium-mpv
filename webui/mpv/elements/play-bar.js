@@ -1,6 +1,5 @@
 import { LitElement, css, html } from 'lit'
 import { styleMap } from 'lit/directives/style-map.js'
-import { classMap } from 'lit/directives/class-map.js'
 import { formatSeconds, getBoundingClientRectViewLeft } from './utils'
 
 const duration_fix_delta = 2
@@ -13,6 +12,10 @@ export default class XPlayBar extends LitElement {
     height: 3px;
     width: calc(100% - 40px);
     pointer-events: all;
+  }
+
+  :host([hidden]) {
+    display: none !important;
   }
 
   .bar {
